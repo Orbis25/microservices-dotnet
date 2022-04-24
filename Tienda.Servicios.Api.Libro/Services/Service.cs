@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Tienda.Servicios.RabbitMQ.Bus.BusRabbit;
+using Tienda.Servicios.RabbitMQ.Bus.EventQueue;
 
 namespace Tienda.Servicios.Api.Libro.Services
 {
@@ -15,15 +17,21 @@ namespace Tienda.Servicios.Api.Libro.Services
     public class Service : IService
     {
         private readonly ApplicationDbContext _dbContext;
-        public Service(ApplicationDbContext dbContext)
+        private readonly IRabbitEventBus _rabbitEventBus;
+        public Service(ApplicationDbContext dbContext, IRabbitEventBus rabbitEventBus)
         {
             _dbContext = dbContext;
+            _rabbitEventBus = rabbitEventBus;   
+
         }
         public async Task<bool> Add(LibreriaMaterial model, CancellationToken cancellationToken = default)
         {
             try
             {
                 _dbContext.LibreriaMaterials.Add(model);
+
+                _rabbitEventBus.Publish(new EmailEventQueue("orbis@gmail.com", "book", "the book was add"));
+
                 return await _dbContext.SaveChangesAsync(cancellationToken) > 0;
             }
             catch (Exception ex)

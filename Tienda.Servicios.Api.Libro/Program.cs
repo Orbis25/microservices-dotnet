@@ -1,6 +1,8 @@
 
 using Microsoft.EntityFrameworkCore;
 using Tienda.Servicios.Api.Libro.Services;
+using Tienda.Servicios.RabbitMQ.Bus.BusRabbit;
+using Tienda.Servicios.RabbitMQ.Bus.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +19,7 @@ builder.Services.AddCors(opt => opt.AddPolicy("allow",(x) =>
 {
     x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
 }));
+builder.Services.AddTransient<IRabbitEventBus, RabbitEventBusService>();
 
 var app = builder.Build();
 

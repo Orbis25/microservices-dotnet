@@ -30,4 +30,8 @@
     <Folder Include="Mappings\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Tienda.Servicios.RabbitMQ.Bus\Tienda.Servicios.RabbitMQ.Bus.csproj" />
+  </ItemGroup>
+
 </Project>

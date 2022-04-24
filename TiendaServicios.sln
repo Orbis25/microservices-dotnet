@@ -14,9 +14,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tienda.Servicios.Api.Libro"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tienda.Servicios.Api.CarritoCompra", "Tienda.Servicios.Api.CarritoCompra\Tienda.Servicios.Api.CarritoCompra.csproj", "{1074C4BF-9A92-47AC-9C00-EE08D7C0E805}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tienda.Servicios.Api.Gateway", "Tienda.Servicios.Api.Gateway\Tienda.Servicios.Api.Gateway.csproj", "{0E548FAF-A76A-46F6-BF89-B4490A0C5C79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tienda.Servicios.Api.Gateway", "Tienda.Servicios.Api.Gateway\Tienda.Servicios.Api.Gateway.csproj", "{0E548FAF-A76A-46F6-BF89-B4490A0C5C79}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{9E954CE2-344A-499D-A44A-60780D5ADB1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tienda.Servicios.RabbitMQ.Bus", "..\Tienda.Servicios.RabbitMQ.Bus\Tienda.Servicios.RabbitMQ.Bus.csproj", "{F3A642E5-B71D-49F9-9FAE-8D874B98EE99}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +46,10 @@ Global
 		{9E954CE2-344A-499D-A44A-60780D5ADB1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E954CE2-344A-499D-A44A-60780D5ADB1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E954CE2-344A-499D-A44A-60780D5ADB1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3A642E5-B71D-49F9-9FAE-8D874B98EE99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3A642E5-B71D-49F9-9FAE-8D874B98EE99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3A642E5-B71D-49F9-9FAE-8D874B98EE99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3A642E5-B71D-49F9-9FAE-8D874B98EE99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

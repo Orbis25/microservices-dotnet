@@ -3,6 +3,10 @@ using Microsoft.EntityFrameworkCore;
 using Tienda.Servicios.Api.Autor.Mappings;
 using Tienda.Servicios.Api.Autor.Services;
 using Tienda.Servicios.Api.Autor.Services.Autor;
+using Tienda.Servicios.Api.Autor.Subscribers;
+using Tienda.Servicios.RabbitMQ.Bus.BusRabbit;
+using Tienda.Servicios.RabbitMQ.Bus.EventQueue;
+using Tienda.Servicios.RabbitMQ.Bus.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +23,8 @@ builder.Services.AddAutoMapper(typeof(Mapping));
 builder.Services.AddDbContext<ApplicationDbContext>(op => op.UseNpgsql(builder.Configuration.GetConnectionString("postgres")));
 
 builder.Services.AddScoped<IAutorLibroService, AutorService>();
+builder.Services.AddTransient<IRabbitEventBus, RabbitEventBusService>();
+builder.Services.AddTransient<IEventManager<EmailEventQueue>, EmailSubscriber>();
 
 var app = builder.Build();
 
@@ -34,5 +40,9 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+
+var eventBus = app.Services.GetRequiredService<IRabbitEventBus>();
+eventBus.Subscribe<EmailEventQueue, EmailSubscriber>();
 
 app.Run();

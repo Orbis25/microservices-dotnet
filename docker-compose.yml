@@ -57,6 +57,17 @@ services:
     depends_on:
         - tienda.servicios.api.libro
 
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+        - 5672:5672
+        - 15672:15672
+    volumes:
+        - data-volume:/var/lib/rabbitmq
+     
+
+
 networks:
     default:
         name: microservices-net
