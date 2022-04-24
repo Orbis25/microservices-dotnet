@@ -1,0 +1,77 @@
+{
+  "Routes": [
+    {
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "host.docker.internal",
+          "Port": "7151"
+        }
+      ],
+      "DownstreamPathTemplate": "/api/LibreriaMaterial",
+      "UpstreamPathTemplate": "/api/books",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
+    },
+    {
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "host.docker.internal",
+          "Port": "7151"
+        }
+      ],
+      "DownstreamPathTemplate": "/api/libreriaMaterial/{id}",
+      "UpstreamPathTemplate": "/api/books/{id}",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ]
+    },
+    {
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "host.docker.internal",
+          "Port": "6104"
+        }
+      ],
+      "DownstreamPathTemplate": "/api/autor",
+      "UpstreamPathTemplate": "/api/author",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
+    },
+    {
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "host.docker.internal",
+          "Port": "6104"
+        }
+      ],
+      "DownstreamPathTemplate": "/api/autor/{id}",
+      "UpstreamPathTemplate": "/api/author/{id}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "host.docker.internal",
+          "Port": "6005"
+        }
+      ],
+      "DownstreamPathTemplate": "/api/CarritoSesion/{id}",
+      "UpstreamPathTemplate": "/api/cart/{id}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "host.docker.internal",
+          "Port": "6005"
+        }
+      ],
+      "DownstreamPathTemplate": "/api/CarritoSesion",
+      "UpstreamPathTemplate": "/api/cart",
+      "UpstreamHttpMethod": [ "GET","POST","PUT" ]
+    }
+
+  ]
+}

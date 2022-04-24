@@ -1,0 +1,67 @@
+version: '3.9'
+
+services:
+  tienda.servicios.api.autor:
+    image: ${DOCKER_REGISTRY-}tiendaserviciosapiautor
+    build:
+      context: .
+      dockerfile: Tienda.Servicios.Api.Autor/Dockerfile
+    depends_on:
+        - "database"
+
+  database:
+    image: postgres
+    container_name: microservice-pg
+    environment:
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: "123456789"
+        POSTGRES_DB: TiendaLibroAutor
+    ports:
+        - 5433:5432
+    volumes:
+        - data-volume:/var/lib/postgresql/data
+
+  tienda.servicios.api.libro:
+    image: ${DOCKER_REGISTRY-}tiendaserviciosapialibro
+    build:
+      context: .
+      dockerfile: Tienda.Servicios.Api.Libro/Dockerfile
+    depends_on:
+        - "sql-server"
+        
+  sql-server:
+    image: mcr.microsoft.com/mssql/server
+    user: root
+    container_name: sql-server
+    environment:
+        SA_PASSWORD: "@Abc.1234"
+        ACCEPT_EULA: "Y"
+    ports:
+       - 1433:1433 
+    volumes:
+       - data-volume:/var/opt/mssql/data
+
+  tienda.servicios.api.carritocompra:
+    image: ${DOCKER_REGISTRY-}tiendaserviciosapicarritocompra
+    build:
+      context: .
+      dockerfile: Tienda.Servicios.Api.CarritoCompra/Dockerfile
+    depends_on:
+       - sql-server
+
+  tienda.servicios.api.gateway:
+    image: ${DOCKER_REGISTRY-}tiendaserviciosapigateway
+    build:
+      context: .
+      dockerfile: Tienda.Servicios.Api.Gateway/Dockerfile
+    depends_on:
+        - tienda.servicios.api.libro
+
+networks:
+    default:
+        name: microservices-net
+volumes:
+    data-volume:
+  
+    
+
